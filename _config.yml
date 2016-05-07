@@ -65,7 +65,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
-theme: jacman
+theme: landscape
 
 
 
@@ -75,7 +75,7 @@ deploy:
   type: git
   repo: git@github.com:lovejjfg/lovejjfg.github.io.git
   branch: gh-pages
-  message: hexo deploy
+  message: hexo commit
       
 
 

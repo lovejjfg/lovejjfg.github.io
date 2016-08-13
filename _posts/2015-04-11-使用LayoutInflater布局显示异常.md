@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      使用LayoutInflater布局显示异常
-category: Android
+category: blog
 description: 你使用LayoutInflater布局显示异常过吗？
 ---
 

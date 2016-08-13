@@ -29,10 +29,11 @@ layout: default
 <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
 <script>
     var pattern = Trianglify({
-        width: index-wrapper .aside.width,
-        height: index-wrapper .aside.height
+        width: 200,
+        height: 1000
     });
-    document. index-wrapper.appendChild(pattern.canvas())
+    document. index-wrapper.aside.appendChild(pattern.canvas())
+
 </script>
 
 

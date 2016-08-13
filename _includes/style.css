@@ -162,10 +162,10 @@ a.external:hover {
   position: fixed;
   top: 0;
   left: 0;
-  width: 50%;
+  width: 30%;
   height: 100%;
   max-width: 500px;
-  background: #FF4081;
+  background: #59a0b0;
 }
 @media screen and (max-width: 767px) {
   .index-wrapper .aside {

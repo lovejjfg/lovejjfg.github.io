@@ -10,8 +10,8 @@ layout: default
         <a href="https://github.com/lovejjfg" target="_blank"><img src="https://github.com/favicon.ico" alt="" width="25" /></a>
         <a href="http://stackoverflow.com/users/5557937/joe" target="_blank"><img src="https://cdn.sstatic.net/Sites/stackoverflow/img/favicon.ico" alt="" width="25"/></a>
       </div>  
-      <div id="test-js"></div>  
-      <!-- <div id="particles-js"></div> -->
+      <!-- <div id="test-js"></div>   -->
+      <div id="particles-js"></div>
     </div>
 
     <div class="index-content">

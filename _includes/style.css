@@ -162,10 +162,11 @@ a.external:hover {
   position: fixed;
   top: 0;
   left: 0;
-  width: 30%;
+  width: 25%;
   height: 100%;
   max-width: 500px;
   background: #9938da;
+  
 }
 @media screen and (max-width: 767px) {
   .index-wrapper .aside {
@@ -464,12 +465,12 @@ a.external:hover {
   -moz-background-size: 20%;
   background-size: 20%;
   background-position: 50% 50%;
-  background: #38658c;
-  background: -webkit-radial-gradient(top left, #5d3571, #38658c);
-  background: -moz-radial-gradient(top left, #5d3571, #38658c);
-  background: -o-radial-gradient(top left, #5d3571, #38658c);
-  background: -ms-radial-gradient(top left, #5d3571, #38658c);
-  background: radial-gradient(to bottom right, #5d3571, #38658c);
+  background: #9938da;
+  background: -webkit-radial-gradient(top left, #5d3571, #9938da);
+  background: -moz-radial-gradient(top left, #5d3571, #9938da);
+  background: -o-radial-gradient(top left, #5d3571, #9938da);
+  background: -ms-radial-gradient(top left, #5d3571, #9938da);
+  background: radial-gradient(to bottom right, #5d3571, #9938da);
 }
 #disqus_container {
   font-size: 12px;

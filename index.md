@@ -38,6 +38,24 @@ layout: default
                   width: index-wrapper .aside.width,
                   height: index-wrapper .aside.height
     });
-    document.body.appendChild(pattern.canvas()) -->
-   </script>
+    document.body.appendChild(pattern.canvas()) 
+    </script> -->
+      <script src="../dist/trianglify.min.js"></script>
+  <script>
+    // set up the base pattern
+  var pattern = Trianglify({
+    height: index-wrapper.aside.height,
+    width: index-wrapper.aside.width,
+    cell_size: 30 + Math.random() * 100})
+
+  // canvas
+  document.index-wrapper.aside.appendChild(pattern.canvas())
+
+  // svg
+ document.index-wrapper.aside.appendChild(pattern.svg())
+
+  // png
+  var png = document.createElement('img')
+  png.src = pattern.png()
+ document.index-wrapper.aside.appendChild(png)
 </body>

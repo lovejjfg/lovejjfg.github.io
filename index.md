@@ -32,7 +32,7 @@ layout: default
         width: index-wrapper .aside.width,
         height: index-wrapper .aside.height
     });
-    document.body.appendChild(pattern.canvas())
+    document. index-wrapper.aside.appendChild(pattern.canvas())
 </script>
 
 

@@ -1,7 +1,10 @@
-title: 使用LayoutInflater布局显示异常
-date: 2016-01-24 12:20:57
-tags: Android
 ---
+layout:     post
+title:      使用LayoutInflater布局显示异常
+category: Android
+description: 你使用LayoutInflater布局显示异常过吗？
+---
+
 在实际开发中一下代码会被经常使用。
   	
 	LayoutInflater.from(this).inflate(R.layout.popup_choose_type, null);

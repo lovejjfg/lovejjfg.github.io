@@ -32,7 +32,7 @@ layout: default
         width: window.innerWidth*0.5,
         height: window.innerHeight
     });
-    document.body.index-wrapper.aside.appendChild(pattern.canvas())
+    document.body.appendChild(pattern.canvas())
 
 </script>
 

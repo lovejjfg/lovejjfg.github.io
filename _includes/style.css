@@ -172,16 +172,17 @@ a.external:hover {
   .index-wrapper .aside {
     position: relative;
     width: 100%;
-    height: 200px;
+    height: 260px;
     max-width: none;
   }
 }
 .index-wrapper .info-card {
   position: absolute;
-  margin-top: 70%;
+  margin-top: 30%;
   text-align: center;
   width: 100%;
 }
+
 @media screen and (max-width: 767px) {
   .index-wrapper .info-card {
     margin-top: 70px;

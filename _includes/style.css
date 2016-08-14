@@ -185,7 +185,7 @@ a.external:hover {
 
 @media screen and (max-width: 767px) {
   .index-wrapper .info-card {
-    margin-top: 70px;
+    margin-top: 30px;
   }
 }
 .index-wrapper .info-card h1 {

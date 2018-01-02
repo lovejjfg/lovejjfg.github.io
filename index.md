@@ -40,7 +40,7 @@ layout: default
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-97835230-3', 'auto');
-  ga('send', 'pageview');
+  ga('send', '首页');
  </script>
 
 

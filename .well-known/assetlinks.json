@@ -1,0 +1,9 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.lovejjfg.readhub",
+    "sha256_cert_fingerprints":
+    ["31:B9:7C:C8:AB:0D:3E:C6:56:B1:D1:BB:DB:D1:FD:2F:1F:4A:94:3B:59:FB:C0:38:28:1C:C3:D7:BD:60:69:CE"]
+  }
+}]

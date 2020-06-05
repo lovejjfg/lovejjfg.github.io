@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <title>Document</title>
+ <script>
+   let recorder
+   function start() {
+     let videoTarget = document.getElementById('audio')
+     navigator.mediaDevices.getUserMedia({audio: true, video: false})
+       .then((stream) => {
+         recorder = new MediaRecorder(stream)
+         videoTarget.srcObject = stream
+         //s用来标记这是否找到了代码头
+         let s = 0
+         recorder.ondataavailable = (event) => {
+           let blob = event.data
+           let videoTarget2 = document.getElementById('audio2')
+           let videoTarget3 = document.getElementById('audio3')
+
+           videoTarget3.addEventListener("loadstart", function () {     //当浏览器开始寻找指定的音频/视频时，会发生 loadstart 事件。即当加载过程开始时
+        console.log("event loadstart: " + (new Date()).getTime());
+    });
+    videoTarget3.addEventListener("durationchange", function (e) {   //当指定音频/视频的时长数据发生变化时，发生 durationchange 事件。
+        console.log("event durationchange: " + (new Date()).getTime()+e);
+        videoTarget3.currentTime = 2
+    });
+    videoTarget3.addEventListener("loadedmetadata", function () {   //当指定的音频/视频的元数据已加载时，会发生 loadedmetadata 事件。
+        console.log("event loadedmetadata: " + (new Date()).getTime());
+    });
+    videoTarget3.addEventListener("progress", function () {   //当浏览器正在下载指定的音频/视频时，会发生 progress 事件。
+        console.log("event progress: " + (new Date()).getTime());
+    });
+    videoTarget3.addEventListener("suspend", function () {    //该事件在媒体数据被阻止加载时触发。 可以是完成加载后触发，或者因为被暂停的原因。
+        console.log("event suspend: " + (new Date()).getTime());
+    });
+    videoTarget3.addEventListener("loadeddata", function () {   //当当前帧的数据已加载，但没有足够的数据来播放指定音频/视频的下一帧时，会发生 loadeddata 事件
+        console.log("event loadeddata: " + (new Date()).getTime());
+    });
+    videoTarget3.addEventListener("canplay", function () {   //当浏览器能够开始播放指定的音频/视频时，发生 canplay 事件。
+        console.log("event canplay: " + (new Date()).getTime());
+    });
+    videoTarget3.addEventListener("canplaythrough", function () {   //当浏览器预计能够在不停下来进行缓冲的情况下持续播放指定的音频/视频时，会发生 canplaythrough 事件。
+        console.log("event canplaythrough: " + (new Date()).getTime());
+    });
+    videoTarget3.addEventListener("play", function () {   //开始播放时触发
+        console.log("event play: " + (new Date()).getTime());
+    });
+    videoTarget3.addEventListener("playing", function () {   // 开始回放
+        console.log("event playing: " + (new Date()).getTime());
+    });
+    videoTarget3.addEventListener("timeupdate", function () { //播放时间改变   这个会一直打印
+        // console.log("event timeupdate: " + (new Date()).getTime());
+    });
+    videoTarget3.addEventListener("pause", function () {   // 暂停时会触发，当播放完一首歌曲时也会触发
+        console.log("event pause: " + (new Date()).getTime());
+    });
+    videoTarget3.addEventListener("ended", function () {   //当播放完一首歌曲时也会触发
+        console.log("event ended: " + (new Date()).getTime());
+    });
+ 
+ 
+ 
+    videoTarget3.addEventListener("abort", function () {     //客户端主动终止下载（不是因为错误引起）
+        console.log("event abort: " + (new Date()).getTime()) ;
+    });
+    videoTarget3.addEventListener("error", function () {   //请求数据时遇到错误
+        console.log("event error: " + (new Date()).getTime());
+    });
+    videoTarget3.addEventListener("stalled", function () {   //网速失速
+        console.log("event stalled: " + (new Date()).getTime());
+    });
+    videoTarget3.addEventListener("waiting", function () {   //等待数据，并非错误
+        console.log("event waiting: " + (new Date()).getTime());
+    });
+    videoTarget3.addEventListener("seeking", function () {  //寻找中
+        console.log("event seeking: " + (new Date()).getTime());
+    });
+    videoTarget3.addEventListener("seeked", function () { //寻找完毕
+        console.log("event seeked: " + (new Date()).getTime());
+    });
+    videoTarget3.addEventListener("ratechange", function () {  //播放速率改变
+        console.log("event ratechange: " + (new Date()).getTime());
+    });
+    videoTarget3.addEventListener("volumechange", function (e) {    //音量改变
+        console.log("event volumechange: " + (new Date()).getTime()+ e);
+    });
+
+    videoTarget3.onloadedmetadata = e => {
+        console.log("event onloadedmetadataonloadedmetadataonloadedmetadata: " + (new Date()).getTime());
+
+            const audio = e.target;
+            const audioDuration = audio.duration;
+            if (audioDuration === Infinity) {
+                audio.currentTime = 1e101;
+                audio.ontimeupdate = function () {
+                    this.ontimeupdate = () => {
+                        return;
+                    };
+                    // 不重新设置currtTime,会直接触发audio的ended事件，因为之前将currentTime设置成了一个比音频时长还大的值。所以要将currentTime重置为初始状态。
+                    // 注: 这里有一个问题，直接设置为0 是不起作用的。需要重新设置一下audio.currentTime = 1e101;然后再设置为0
+                    audio.currentTime = 1e101;
+                    audio.currentTime = 0;
+                };
+            }
+    }
+
+
+           let a = blob.stream().getReader()
+           a.read().then(({ done, value }) => {
+             let newValue = [] //用来存放倒置后的新数组
+             let r = 0 //r代表指针记录新数组插入元素的位置
+             let b = 0 //b用来记录这是第几个S（S是我们上面提到的最小音频单位）
+             for(i = 0; i < value.length; i++) {
+               if(value[i] === 163){
+               //s=1表示进入戒备状态
+                 s = 1
+               } else if(s === 1 && value[i] === 65) {
+               //在戒备状态的条件下value[i] === 65说明的确是开始了新的一段最小单位的音频
+                 b === 5 ? (r = 162,b = 0) : b++
+                 //这里b===5是可以改的，我定的是5个S作为一个整体倒置，因为每个S持续时间太短了，一个S一倒置放出来的音频效果很差
+                 //r=162是将指针移到162也就是出去音频头最早开始循环的位置，这样我们就完成了倒置，打完5个S就把指针移回最开始继续打
+               } else {
+               //value[i] !== 65说明只是凑巧，并不是找到了代码头，我们再将s标示置为0
+                 s = 0
+               }
+               //在指针位置插入元素
+               newValue.splice(r, 0, value[i])
+               //指针后移
+               r++
+             }
+             b = 0
+             //我们现在得到的数组就是第三次尝试时的到的数组，播放时一直显示最后一秒
+             newValue.splice(r, 0, 163)
+             //删掉最后一个元素是因为上面指针后移操作会使数组最后多一个163（戒备状态那个判断用到的163）
+             newValue.pop()
+             //然后我们就要将音频最小单位S的代码头后面两位变成0 0， 0 60，0 120....
+             for(i = 0; i < newValue.length; i++) {
+               if(newValue[i] == 163){
+                 s = 1
+               } else if(s == 1 && newValue[i] == 65) {
+               //得到的规律是每次后面加60，但是如果超过了256就要进位，前面加1
+                 newValue[i+3] = parseInt(b * 60 / 256)
+                 newValue[i+4] = b * 60 % 256
+                 b++
+                 console.log(i, newValue[i+3], newValue[i+4])
+               } else {
+                 s = 0
+               }
+             }
+             console.log(newValue)
+             console.log(value)
+             //然后再将新数组转成blob赋给audio就可播放了
+             newValue = new Uint8Array(newValue)
+             let blob2 = new Blob([newValue], {type: 'audio/webm;codecs=opus'})
+             videoTarget2.src = window.URL.createObjectURL(blob2)
+             let blob3 = new Blob([value], {type: 'audio/webm;codecs=opus'})
+             videoTarget3.type = 'audio/webm;codecs=opus'
+             videoTarget3.src = window.URL.createObjectURL(blob3) 
+           })
+         }
+         recorder.start()
+       });
+   }
+
+   function stop() {
+     document.getElementById('audio').pause()
+     recorder.stop()
+   }
+ </script>
+</head>
+
+<body>
+ <audio id="audio" controls autoplay></audio>录音（不用点它去点开始和结束）
+ <audio id="audio2" controls autoplay></audio>倒放
+ <audio id="audio3" controls ></audio>正放
+ <input onclick="start()" type="button" value="开始" />
+ <input onclick="stop()" type="button" value="结束" />
+</body>
+
+</html>
